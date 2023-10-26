@@ -1,0 +1,14 @@
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\bin\Debug\Cockring.exe.config
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\bin\Debug\Cockring.exe
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\bin\Debug\Cockring.pdb
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.csproj.AssemblyReference.cache
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.csproj.ResolveComReference.cache
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.AddPatientForm.resources
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.EditPatientForm.resources
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.MainForm.resources
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.ArchivePatients.resources
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\Cockring.Properties.Resources.resources
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.csproj.GenerateResource.cache
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\InterfaceReHub.csproj.CoreCompileInputs.cache
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\Cockring.exe
+C:\Users\tsuki\source\repos\InterfaceReHub\Cockring\obj\Debug\Cockring.pdb
