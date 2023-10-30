@@ -66,9 +66,7 @@ namespace InterfaceReHub
                 CalfLength = calfLength,
                 FootLength = footLength
             };
-
             patientList.Add(patient);
-
             DialogResult = DialogResult.OK;
             Close();
         }

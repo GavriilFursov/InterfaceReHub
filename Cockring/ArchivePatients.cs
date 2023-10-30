@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,7 +39,6 @@ namespace InterfaceReHub
             workbook = excelApp.Workbooks.Open(patientsFilePath);
             worksheet = workbook.ActiveSheet;
 
-
             int rowCount = worksheet.UsedRange.Rows.Count;
 
             for (int i = 1; i <= rowCount; i++)
@@ -61,7 +61,6 @@ namespace InterfaceReHub
                         CalfLength = calfLength != null ? double.Parse(calfLength.ToString()) : 0,
                         FootLength = footLength != null ? double.Parse(footLength.ToString()) : 0
                     };
-
                     patientList.Add(patient);
                 }
             }
@@ -83,7 +82,6 @@ namespace InterfaceReHub
             {
                 worksheet.Rows[i].Delete();
             }
-
             // Запись данных о пациентах в эксель файл
             for (int i = 0; i < patientList.Count; i++)
             {
@@ -95,7 +93,6 @@ namespace InterfaceReHub
                 worksheet.Cells[i + 1, 5] = patient.CalfLength;
                 worksheet.Cells[i + 1, 6] = patient.FootLength;
             }
-
             workbook.Save();
             workbook.Close();
             excelApp.Quit();
@@ -113,10 +110,9 @@ namespace InterfaceReHub
 
         private void btnEditPatient_Click(object sender, EventArgs e)
         {
-            int selectedIndex = dataGridViewPatients.SelectedRows[0].Index;
-
-            if (selectedIndex != -1)
+            if (dataGridViewPatients.SelectedRows.Count > 0)
             {
+                int selectedIndex = dataGridViewPatients.SelectedRows[0].Index;
                 // Проверяем, что выбранная строка не пуста
                 if (dataGridViewPatients.Rows[selectedIndex].Cells[0].Value != null && !string.IsNullOrEmpty(dataGridViewPatients.Rows[selectedIndex].Cells[0].Value.ToString()))
                 {
@@ -141,10 +137,10 @@ namespace InterfaceReHub
 
         private void btnDeletePatient_Click(object sender, EventArgs e)
         {
-            int selectedIndex = dataGridViewPatients.SelectedRows[0].Index;
-
-            if (selectedIndex != -1)
+            if (dataGridViewPatients.SelectedRows.Count > 0)
             {
+                int selectedIndex = dataGridViewPatients.SelectedRows[0].Index;
+
                 // Проверяем, что выбранная строка не пуста
                 if (dataGridViewPatients.Rows[selectedIndex].Cells[0].Value != null && !string.IsNullOrEmpty(dataGridViewPatients.Rows[selectedIndex].Cells[0].Value.ToString()))
                 {
@@ -162,7 +158,6 @@ namespace InterfaceReHub
                 MessageBox.Show("Выберите пациента для удаления.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void UpdatePatientsList()
         {
             dataGridViewPatients.Rows.Clear();
@@ -195,12 +190,20 @@ namespace InterfaceReHub
             if (dataGridViewPatients.SelectedRows.Count > 0)
             {
                 int selectedIndex = dataGridViewPatients.SelectedRows[0].Index;
-                dataGridViewPatients.ClearSelection();
-                dataGridViewPatients.Rows[selectedIndex].Selected = true;
-                SelectedPatient = patientList[selectedIndex];
-                SelectedPatientFullName = $"{SelectedPatient.LastName} {SelectedPatient.FirstName} {SelectedPatient.MiddleName}";
-                DialogResult = DialogResult.OK;
-                this.Close();
+
+                if (selectedIndex >= 0 && selectedIndex < patientList.Count)
+                {
+                    dataGridViewPatients.ClearSelection();
+                    dataGridViewPatients.Rows[selectedIndex].Selected = true;
+                    SelectedPatient = patientList[selectedIndex];
+                    SelectedPatientFullName = $"{SelectedPatient.LastName} {SelectedPatient.FirstName} {SelectedPatient.MiddleName}";
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Вы выбрали пустую строчку.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

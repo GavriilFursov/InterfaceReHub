@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSelectPatients = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
             this.comboBoxPort = new System.Windows.Forms.ComboBox();
             this.arduinoButton = new System.Windows.Forms.Button();
@@ -39,20 +39,19 @@
             this.labelPrescriptionSelectionPatient = new System.Windows.Forms.Label();
             this.buttonAssistingMode = new System.Windows.Forms.Button();
             this.buttonRehabilitatingExercises = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxPatientFullName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonSelectPatients
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(951, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(213, 50);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Выбор пациента";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSelectPatients.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSelectPatients.Location = new System.Drawing.Point(951, 11);
+            this.buttonSelectPatients.Name = "buttonSelectPatients";
+            this.buttonSelectPatients.Size = new System.Drawing.Size(213, 50);
+            this.buttonSelectPatients.TabIndex = 0;
+            this.buttonSelectPatients.Text = "Выбор пациента";
+            this.buttonSelectPatients.UseVisualStyleBackColor = true;
+            this.buttonSelectPatients.Click += new System.EventHandler(this.buttonSelectPatients_Click);
             // 
             // connectButton
             // 
@@ -104,14 +103,16 @@
             this.buttonInformation.TabIndex = 14;
             this.buttonInformation.Text = "Информация";
             this.buttonInformation.UseVisualStyleBackColor = true;
+            this.buttonInformation.Click += new System.EventHandler(this.buttonInformation_Click);
             // 
             // labelPrescriptionSelectionPatient
             // 
             this.labelPrescriptionSelectionPatient.AutoSize = true;
-            this.labelPrescriptionSelectionPatient.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPrescriptionSelectionPatient.Location = new System.Drawing.Point(375, 73);
+            this.labelPrescriptionSelectionPatient.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPrescriptionSelectionPatient.ForeColor = System.Drawing.Color.Red;
+            this.labelPrescriptionSelectionPatient.Location = new System.Drawing.Point(445, 59);
             this.labelPrescriptionSelectionPatient.Name = "labelPrescriptionSelectionPatient";
-            this.labelPrescriptionSelectionPatient.Size = new System.Drawing.Size(409, 21);
+            this.labelPrescriptionSelectionPatient.Size = new System.Drawing.Size(285, 15);
             this.labelPrescriptionSelectionPatient.TabIndex = 13;
             this.labelPrescriptionSelectionPatient.Text = "Перед началом реабилитации, выберите пациента";
             // 
@@ -124,6 +125,7 @@
             this.buttonAssistingMode.TabIndex = 12;
             this.buttonAssistingMode.Text = "Ассистирующий режим";
             this.buttonAssistingMode.UseVisualStyleBackColor = true;
+            this.buttonAssistingMode.Click += new System.EventHandler(this.buttonAssistingMode_Click);
             // 
             // buttonRehabilitatingExercises
             // 
@@ -134,16 +136,7 @@
             this.buttonRehabilitatingExercises.TabIndex = 11;
             this.buttonRehabilitatingExercises.Text = "Реабилитирующие упражнения";
             this.buttonRehabilitatingExercises.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(494, 483);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 21);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Статус подключения";
+            this.buttonRehabilitatingExercises.Click += new System.EventHandler(this.buttonRehabilitatingExercises_Click);
             // 
             // textBoxPatientFullName
             // 
@@ -161,7 +154,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 792);
             this.Controls.Add(this.textBoxPatientFullName);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.comboBoxPort);
             this.Controls.Add(this.arduinoButton);
@@ -170,7 +162,7 @@
             this.Controls.Add(this.labelPrescriptionSelectionPatient);
             this.Controls.Add(this.buttonAssistingMode);
             this.Controls.Add(this.buttonRehabilitatingExercises);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSelectPatients);
             this.Name = "MainForm";
             this.Text = "ReHab Монитор пациента";
             this.ResumeLayout(false);
@@ -180,7 +172,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSelectPatients;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.ComboBox comboBoxPort;
         private System.Windows.Forms.Button arduinoButton;
@@ -190,7 +182,6 @@
         private System.Windows.Forms.Button buttonAssistingMode;
         private System.Windows.Forms.Button buttonRehabilitatingExercises;
         private System.IO.Ports.SerialPort serialPort;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxPatientFullName;
     }
 }

@@ -61,7 +61,7 @@ namespace InterfaceReHub
             }
             else
             {
-                MessageBox.Show("Не указано длина бедра.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не указана длина бедра.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -85,7 +85,7 @@ namespace InterfaceReHub
                 return;
             }
 
-            UpdateDataGridView(); // Call method to update DataGridView
+            UpdateDataGridView();
             DialogResult = DialogResult.OK;
         }
         private void UpdateDataGridView()

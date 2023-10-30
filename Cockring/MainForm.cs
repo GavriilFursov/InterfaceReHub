@@ -15,7 +15,10 @@ namespace InterfaceReHub
     public partial class MainForm : System.Windows.Forms.Form
     {
         public string SelectedPatientFullName { get; set; }
+
         bool isConnected = false;
+        bool isSelectedPatient = false;
+
         private string patientsFilePath = "c:\\Patients\\patients.xlsx"; // Путь к файлу с пациентами
 
         public MainForm()
@@ -23,15 +26,17 @@ namespace InterfaceReHub
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSelectPatients_Click(object sender, EventArgs e)
         {
             ArchivePatients archiveForm = new ArchivePatients(patientsFilePath);
             if (archiveForm.ShowDialog() == DialogResult.OK)
             {
                 textBoxPatientFullName.Text = archiveForm.SelectedPatientFullName;
+                isSelectedPatient = true;
+                this.Controls.Remove(labelPrescriptionSelectionPatient);
             }
         }
-
+        
         private void arduinoButton_Click(object sender, EventArgs e) 
         {
             comboBoxPort.Items.Clear();
@@ -52,11 +57,18 @@ namespace InterfaceReHub
         }
         private void connectToArduino()
         {
-            isConnected = true;
             string selectedPort = comboBoxPort.GetItemText(comboBoxPort.SelectedItem);
-            serialPort.PortName = selectedPort;
-            serialPort.Open();
-            connectButton.Text = "Отключиться";
+            if (!string.IsNullOrEmpty(selectedPort))
+            {
+                isConnected = true;
+                serialPort.PortName = selectedPort;
+                serialPort.Open();
+                connectButton.Text = "Отключиться";
+            }
+            else
+            {
+                MessageBox.Show("Выберите порт для подключения.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void disconnectFromArduino()
@@ -81,6 +93,41 @@ namespace InterfaceReHub
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonRehabilitatingExercises_Click(object sender, EventArgs e)
+        {
+            if (isConnected)
+            {
+                if (isSelectedPatient)
+                {
+                    // Ваш код для обработки клика на кнопку в режиме подключения
+                }
+                else
+                {
+                    MessageBox.Show("Необходимо выбрать пациента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Необходимо установить подключение к устройству","Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void buttonAssistingMode_Click(object sender, EventArgs e)
+        {
+            if (isConnected)
+            {
+                // Ваш код для обработки клика на кнопку в режиме подключения
+            }
+            else
+            {
+                MessageBox.Show("Необходимо установить подключение к устройству", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonInformation_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
