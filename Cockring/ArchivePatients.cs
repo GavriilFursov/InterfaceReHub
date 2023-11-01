@@ -66,6 +66,7 @@ namespace InterfaceReHub
             }
             workbook.Close();
             excelApp.Quit();
+            SortPatients();
             UpdatePatientsList();
         }
 
@@ -161,6 +162,7 @@ namespace InterfaceReHub
         private void UpdatePatientsList()
         {
             dataGridViewPatients.Rows.Clear();
+            SortPatients();
 
             foreach (Patient patient in patientList)
             {
@@ -191,18 +193,33 @@ namespace InterfaceReHub
             {
                 int selectedIndex = dataGridViewPatients.SelectedRows[0].Index;
 
-                if (selectedIndex >= 0 && selectedIndex < patientList.Count)
+                if (dataGridViewPatients.Rows[selectedIndex].Cells[0].Value != null &&
+                    !string.IsNullOrEmpty(dataGridViewPatients.Rows[selectedIndex].Cells[0].Value.ToString()))
                 {
-                    dataGridViewPatients.ClearSelection();
-                    dataGridViewPatients.Rows[selectedIndex].Selected = true;
-                    SelectedPatient = patientList[selectedIndex];
-                    SelectedPatientFullName = $"{SelectedPatient.LastName} {SelectedPatient.FirstName} {SelectedPatient.MiddleName}";
-                    DialogResult = DialogResult.OK;
-                    this.Close();
+                    DataGridViewRow selectedRow = dataGridViewPatients.Rows[selectedIndex];
+                    string selectedLastName = selectedRow.Cells[0].Value.ToString();
+                    string selectedFirstName = selectedRow.Cells[1].Value.ToString();
+                    string selectedMiddleName = selectedRow.Cells[2].Value.ToString();
+
+                    SelectedPatient = patientList.FirstOrDefault(p =>
+                        p.LastName == selectedLastName &&
+                        p.FirstName == selectedFirstName &&
+                        p.MiddleName == selectedMiddleName);
+
+                    if (SelectedPatient != null)
+                    {
+                        SelectedPatientFullName = $"{SelectedPatient.LastName} {SelectedPatient.FirstName} {SelectedPatient.MiddleName}";
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выбранный пациент не найден в списке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Вы выбрали пустую строчку.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Вы выбрали пустую строку.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -210,6 +227,45 @@ namespace InterfaceReHub
                 MessageBox.Show("Выберите пациента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             dataGridViewPatients.SelectionChanged += DataGridViewPatients_SelectionChanged;
+        }
+
+        private void SearchPatient(string searchText)
+        {
+            dataGridViewPatients.Rows.Clear();
+            string[] searchWords = searchText.ToLower().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (Patient patient in patientList)
+            {
+                bool matchFound = true;
+                foreach (string word in searchWords)
+                {
+                    if (!(patient.FirstName.ToLower().Contains(word) ||
+                          patient.LastName.ToLower().Contains(word) ||
+                          patient.MiddleName.ToLower().Contains(word)))
+                    {
+                        matchFound = false;
+                        break;
+                    }
+                }
+
+                if (matchFound)
+                {
+                    dataGridViewPatients.Rows.Add(patient.LastName, patient.FirstName, patient.MiddleName, patient.ThighLength, patient.CalfLength, patient.FootLength);
+                }
+            }
+            dataGridViewPatients.Refresh();
+            SortPatients();
+        }
+
+        private void TextBoxSearchPatient_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = TextBoxSearchPatient.Text;
+            SearchPatient(searchText);
+        }
+
+        private void SortPatients()
+        {
+            patientList = patientList.OrderBy(p =>   p.LastName).ThenBy(p => p.FirstName).ThenBy(p => p.MiddleName).ToList();
         }
     }
 }

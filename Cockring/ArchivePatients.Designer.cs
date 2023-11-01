@@ -36,13 +36,15 @@
             this.btnEditPatient = new System.Windows.Forms.Button();
             this.btnDeletePatient = new System.Windows.Forms.Button();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
-            this.btnAccept = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.TextBoxSearchPatient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,7 +111,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewPatients.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPatients.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dataGridViewPatients.Location = new System.Drawing.Point(171, 12);
+            this.dataGridViewPatients.Location = new System.Drawing.Point(171, 41);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -123,19 +125,8 @@
             this.dataGridViewPatients.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewPatients.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dataGridViewPatients.RowTemplate.Height = 25;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(1041, 795);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(1060, 766);
             this.dataGridViewPatients.TabIndex = 4;
-            // 
-            // btnAccept
-            // 
-            this.btnAccept.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAccept.Location = new System.Drawing.Point(12, 755);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(142, 52);
-            this.btnAccept.TabIndex = 5;
-            this.btnAccept.Text = "Принять";
-            this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // Column1
             // 
@@ -187,11 +178,43 @@
             this.Column6.Name = "Column6";
             this.Column6.Width = 188;
             // 
+            // btnAccept
+            // 
+            this.btnAccept.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAccept.Location = new System.Drawing.Point(12, 755);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(142, 52);
+            this.btnAccept.TabIndex = 5;
+            this.btnAccept.Text = "Принять";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
+            // TextBoxSearchPatient
+            // 
+            this.TextBoxSearchPatient.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TextBoxSearchPatient.Location = new System.Drawing.Point(317, 6);
+            this.TextBoxSearchPatient.Name = "TextBoxSearchPatient";
+            this.TextBoxSearchPatient.Size = new System.Drawing.Size(914, 29);
+            this.TextBoxSearchPatient.TabIndex = 6;
+            this.TextBoxSearchPatient.TextChanged += new System.EventHandler(this.TextBoxSearchPatient_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(175, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 21);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Поиск по ФИО:";
+            // 
             // ArchivePatients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1224, 819);
+            this.ClientSize = new System.Drawing.Size(1237, 819);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.TextBoxSearchPatient);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.dataGridViewPatients);
             this.Controls.Add(this.btnDeletePatient);
@@ -201,6 +224,7 @@
             this.Text = "Архив пациентов";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -216,5 +240,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.TextBox TextBoxSearchPatient;
+        private System.Windows.Forms.Label label1;
     }
 }
