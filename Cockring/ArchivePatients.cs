@@ -20,6 +20,12 @@ namespace InterfaceReHub
         private Excel.Worksheet worksheet;
         private List<Patient> patientList;
         private readonly DataGridView dataGridView;
+
+        public ArchivePatients(DataGridView dataGridView)
+        {
+            this.dataGridView = dataGridView;
+        }
+
         public string SelectedPatientFullName;
 
         public ArchivePatients(string patientsFilePath)
@@ -239,7 +245,7 @@ namespace InterfaceReHub
                 bool matchFound = true;
                 foreach (string word in searchWords)
                 {
-                    if (!(patient.FirstName.ToLower().Contains(word) ||
+                    if (!(patient.FirstName.ToLower().Contains(word) || 
                           patient.LastName.ToLower().Contains(word) ||
                           patient.MiddleName.ToLower().Contains(word)))
                     {
@@ -265,7 +271,7 @@ namespace InterfaceReHub
 
         private void SortPatients()
         {
-            patientList = patientList.OrderBy(p =>   p.LastName).ThenBy(p => p.FirstName).ThenBy(p => p.MiddleName).ToList();
+            patientList = patientList.OrderBy(p => p.LastName).ThenBy(p => p.FirstName).ThenBy(p => p.MiddleName).ToList();
         }
     }
 }

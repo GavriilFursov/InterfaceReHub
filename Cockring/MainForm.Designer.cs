@@ -32,14 +32,15 @@
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.buttonSelectPatients = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
-            this.comboBoxPort = new System.Windows.Forms.ComboBox();
-            this.arduinoButton = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.buttonInformation = new System.Windows.Forms.Button();
             this.labelPrescriptionSelectionPatient = new System.Windows.Forms.Label();
             this.buttonAssistingMode = new System.Windows.Forms.Button();
             this.buttonRehabilitatingExercises = new System.Windows.Forms.Button();
             this.textBoxPatientFullName = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBoxArduinoData = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSelectPatients
@@ -56,32 +57,13 @@
             // connectButton
             // 
             this.connectButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.connectButton.Location = new System.Drawing.Point(32, 121);
+            this.connectButton.Location = new System.Drawing.Point(32, 16);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(140, 49);
             this.connectButton.TabIndex = 18;
             this.connectButton.Text = "Подключиться";
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
-            // 
-            // comboBoxPort
-            // 
-            this.comboBoxPort.FormattingEnabled = true;
-            this.comboBoxPort.Location = new System.Drawing.Point(32, 75);
-            this.comboBoxPort.Name = "comboBoxPort";
-            this.comboBoxPort.Size = new System.Drawing.Size(140, 21);
-            this.comboBoxPort.TabIndex = 17;
-            // 
-            // arduinoButton
-            // 
-            this.arduinoButton.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.arduinoButton.Location = new System.Drawing.Point(32, 11);
-            this.arduinoButton.Name = "arduinoButton";
-            this.arduinoButton.Size = new System.Drawing.Size(140, 49);
-            this.arduinoButton.TabIndex = 16;
-            this.arduinoButton.Text = "Выберите порт";
-            this.arduinoButton.UseVisualStyleBackColor = true;
-            this.arduinoButton.Click += new System.EventHandler(this.arduinoButton_Click);
             // 
             // buttonExit
             // 
@@ -148,15 +130,44 @@
             this.textBoxPatientFullName.Text = "Пациент не выбран";
             this.textBoxPatientFullName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(32, 87);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Вкл";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(32, 127);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Выкл";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBoxArduinoData
+            // 
+            this.textBoxArduinoData.Font = new System.Drawing.Font("Times New Roman", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxArduinoData.Location = new System.Drawing.Point(32, 176);
+            this.textBoxArduinoData.Name = "textBoxArduinoData";
+            this.textBoxArduinoData.Size = new System.Drawing.Size(140, 81);
+            this.textBoxArduinoData.TabIndex = 23;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 792);
+            this.Controls.Add(this.textBoxArduinoData);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxPatientFullName);
             this.Controls.Add(this.connectButton);
-            this.Controls.Add(this.comboBoxPort);
-            this.Controls.Add(this.arduinoButton);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonInformation);
             this.Controls.Add(this.labelPrescriptionSelectionPatient);
@@ -174,8 +185,6 @@
 
         private System.Windows.Forms.Button buttonSelectPatients;
         private System.Windows.Forms.Button connectButton;
-        private System.Windows.Forms.ComboBox comboBoxPort;
-        private System.Windows.Forms.Button arduinoButton;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button buttonInformation;
         private System.Windows.Forms.Label labelPrescriptionSelectionPatient;
@@ -183,6 +192,9 @@
         private System.Windows.Forms.Button buttonRehabilitatingExercises;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.TextBox textBoxPatientFullName;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBoxArduinoData;
     }
 }
 
